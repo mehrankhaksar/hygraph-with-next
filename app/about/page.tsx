@@ -1,5 +1,6 @@
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { getAboutPage } from "../services/pageService";
+import Link from "next/link";
 
 export default async function AboutPage() {
   const aboutPageData = await getAboutPage();
@@ -19,6 +20,23 @@ export default async function AboutPage() {
                 {children}
               </blockquote>
             ),
+            a: ({ href, children }) => {
+              if (!href) return;
+              const styles =
+                "underline text-indigo-500 transition-colors hover:text-indigo-700";
+              if (href.startsWith("http"))
+                return (
+                  <a href={href} className={styles}>
+                    {children}
+                  </a>
+                );
+              else
+                return (
+                  <Link href={href} className={styles}>
+                    {children}
+                  </Link>
+                );
+            },
           }}
         />
       </div>
