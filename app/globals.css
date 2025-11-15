@@ -89,6 +89,8 @@ h6 {
 
 p {
   line-height: 1.6;
+  color: theme("colors.gray.600");
+  text-align: justify;
 }
 
 h2 {
@@ -99,6 +101,52 @@ h2 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+.title {
+  @apply bg-linear-to-b from-primary-600 to-indigo-600 bg-clip-text tracking-tight;
+  -webkit-text-fill-color: transparent;
+}
+
+.blog-card-gradient-border {
+  position: relative;
+  border-radius: 12px;
+}
+
+.blog-card-gradient-border::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary-600) 0%,
+    var(--color-indigo-600) 5%,
+    rgba(255, 255, 255, 0.2) 10%,
+    transparent 10%
+  );
+  border-radius: 0 0 12px 12px;
+  pointer-events: none;
+}
+
+.blog-card-gradient-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(
+    to top,
+    var(--color-primary-600) 0%,
+    var(--color-indigo-600) 10%,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%
+  );
+  border-radius: 12px 0 0 12px;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
