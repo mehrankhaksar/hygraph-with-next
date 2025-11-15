@@ -5,4 +5,10 @@ export interface IBlog {
   thumbnail?: {
     url: string;
   } | null;
+  content: {
+    raw: any;
+  } | null;
+  createdBy: {
+    name: string;
+  };
 }

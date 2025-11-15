@@ -19,7 +19,7 @@ export default function BlogList({
           key={blogItem.slug}
           className="flex gap-4 p-2.5 blog-card-gradient-border"
         >
-          <div className="relative w-[150px] h-[150px] shrink-0">
+          <article className="relative w-[150px] h-[150px] shrink-0">
             <Image
               src={
                 blogItem.thumbnail?.url || "https://placehold.co/150x150/png"
@@ -29,7 +29,7 @@ export default function BlogList({
               sizes="150px"
               className="object-cover rounded-md"
             />
-          </div>
+          </article>
           <div className="flex-1 space-y-1">
             <h3>{blogItem.title}</h3>
             <p>{blogItem.summary}</p>

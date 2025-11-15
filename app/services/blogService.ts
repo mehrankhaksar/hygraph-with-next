@@ -1,4 +1,4 @@
-import { GET_BLOGS } from "../graphql/blog/queries";
+import { GET_BLOG, GET_BLOGS } from "../graphql/blog/queries";
 import { IBlog } from "../types/blog";
 
 const getBlogs = async (): Promise<IBlog[] | null> => {
@@ -6,4 +6,11 @@ const getBlogs = async (): Promise<IBlog[] | null> => {
   return response?.blogs ?? null;
 };
 
-export { getBlogs };
+const getBlog = async (slug: string): Promise<IBlog | null> => {
+  const response = (await GET_BLOG.$send({ slug })) as {
+    blog: IBlog | null;
+  };
+  return response?.blog ?? null;
+};
+
+export { getBlogs, getBlog };

@@ -26,7 +26,7 @@ export default async function AboutPage() {
                 "underline text-indigo-500 transition-colors hover:text-indigo-700";
               if (href.startsWith("http"))
                 return (
-                  <a href={href} className={styles}>
+                  <a href={href} className={styles} target="_blank">
                     {children}
                   </a>
                 );

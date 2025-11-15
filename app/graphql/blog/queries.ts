@@ -13,4 +13,19 @@ const GET_BLOGS = HygraphClient.gql(`
     }
   `);
 
-export { GET_BLOGS };
+const GET_BLOG = HygraphClient.gql(`
+    query Blog($slug: String!) {
+        blog(where: { slug: $slug }) {
+        createdBy {
+            name
+        }
+        title
+        summary
+        content {
+            raw
+        }
+        }
+    }
+`);
+
+export { GET_BLOGS, GET_BLOG };
