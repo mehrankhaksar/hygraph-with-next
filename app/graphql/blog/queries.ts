@@ -13,6 +13,33 @@ const GET_BLOGS = HygraphClient.gql(`
     }
   `);
 
+const GET_PAGINATED_BLOGS = HygraphClient.gql(`
+    query PaginatedBlogs($cursor: String) {
+        blogsConnection(
+            first: 4
+            orderBy: publishedAt_DESC
+            after: $cursor
+        ) {
+            pageInfo {
+                endCursor
+                hasNextPage
+            }
+            edges {
+                node {
+                    title
+                    slug
+                    id
+                    summary
+                    thumbnail {
+                        url
+                        fileName
+                    }
+                }
+            }
+        }
+    }
+  `);
+
 const GET_BLOG = HygraphClient.gql(`
     query Blog($slug: String!) {
         blog(where: { slug: $slug }) {
@@ -28,4 +55,4 @@ const GET_BLOG = HygraphClient.gql(`
     }
 `);
 
-export { GET_BLOGS, GET_BLOG };
+export { GET_BLOGS, GET_PAGINATED_BLOGS, GET_BLOG };

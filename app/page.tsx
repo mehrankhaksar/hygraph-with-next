@@ -1,8 +1,8 @@
 import BlogList from "./components/BlogList";
-import { getBlogs } from "./services/blogService";
+import { getPaginatedBlogs } from "./services/blogService";
 
 export default async function HomePage() {
-  const blogsData = await getBlogs();
+  const blogsData = await getPaginatedBlogs();
 
   return (
     <section>
@@ -15,7 +15,7 @@ export default async function HomePage() {
         modi eveniet aliquam possimus assumenda voluptatum veniam, sapiente
         nulla magnam quidem atque pariatur quo excepturi cupiditate.
       </p>
-      <BlogList initialBlogList={blogsData || []} />
+      {blogsData ? <BlogList initialBlogsData={blogsData} /> : null}
     </section>
   );
 }

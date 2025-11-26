@@ -4,8 +4,8 @@ export default function Footer() {
   return (
     <footer className="bg-gray-800">
       <div className="container">
-        <div className="py-2 text-center">
-          <p className="text-sm text-gray-400">
+        <div className="py-2">
+          <p className="text-sm text-gray-400 text-center!">
             © {currentYear} GameZone. All rights reserved. Built for gamers, by
             gamers.
           </p>
