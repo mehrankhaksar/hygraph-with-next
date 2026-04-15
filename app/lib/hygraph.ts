@@ -1,7 +1,5 @@
-import { Graffle } from "graffle";
+import { GraphQLClient } from "graphql-request";
 
-const HygraphClient = Graffle.create().transport({
-  url: process.env.HYGRAPH_ENDPOINT,
-});
+const HygraphClient = new GraphQLClient(process.env.HYGRAPH_ENDPOINT!);
 
 export default HygraphClient;
