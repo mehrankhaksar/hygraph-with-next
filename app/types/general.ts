@@ -1,6 +1,6 @@
-export type PaginatedResponseType<T> = {
+export type PaginatedAPIResponseType<T> = {
   pageInfo: {
-    endCursor: string;
+    endCursor: string | null;
     hasNextPage: boolean;
   };
   edges: { node: T }[];

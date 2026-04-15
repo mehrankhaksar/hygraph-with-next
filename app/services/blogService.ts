@@ -1,30 +1,27 @@
+"use server";
+
+import { GET_BLOG, GET_PAGINATED_BLOGS } from "../graphql";
+import HygraphClient from "../lib/hygraph";
 import {
-  GET_BLOG,
-  GET_BLOGS,
-  GET_PAGINATED_BLOGS,
-} from "../graphql/blog/queries";
-import { IBlog } from "../types/blog";
-import { PaginatedResponseType } from "../types/general";
+  BlogAPIResponseType,
+  PaginatedBlogsAPIResponseType,
+} from "../types/blog";
 
-const getBlogs = async (): Promise<IBlog[] | null> => {
-  const response = (await GET_BLOGS.$send()) as { blogs: IBlog[] | null };
-  return response?.blogs ?? null;
+const getPaginatedBlogs = async (cursor: string | null = null) => {
+  const response = await HygraphClient.request<PaginatedBlogsAPIResponseType>(
+    GET_PAGINATED_BLOGS,
+    {
+      cursor,
+    },
+  );
+  return response.blogsConnection;
 };
 
-const getPaginatedBlogs = async (
-  cursor: string | null = null
-): Promise<PaginatedResponseType<IBlog> | null> => {
-  const response = (await GET_PAGINATED_BLOGS.$send({ cursor })) as {
-    blogsConnection: PaginatedResponseType<IBlog> | null;
-  };
-  return response?.blogsConnection ?? null;
+const getBlog = async (slug: string) => {
+  const response = await HygraphClient.request<BlogAPIResponseType>(GET_BLOG, {
+    slug,
+  });
+  return response.blog;
 };
 
-const getBlog = async (slug: string): Promise<IBlog | null> => {
-  const response = (await GET_BLOG.$send({ slug })) as {
-    blog: IBlog | null;
-  };
-  return response?.blog ?? null;
-};
-
-export { getBlogs, getPaginatedBlogs, getBlog };
+export { getPaginatedBlogs, getBlog };

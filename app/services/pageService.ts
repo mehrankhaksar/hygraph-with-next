@@ -1,3 +1,5 @@
+"use server";
+
 import { GET_ABOUT_PAGE } from "../graphql";
 import HygraphClient from "../lib/hygraph";
 import { IPage } from "../types/page";
